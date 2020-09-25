@@ -20,18 +20,18 @@ namespace Observer
             this.provider.Unsubscribe(this);
         }
 
-        public void Update()
+        public void Update(Temperature Current)
         {
-            Console.WriteLine($"The temperature is {this.provider.Current.Degrees}°C at {this.provider.Current.Date:g}");
+            Console.WriteLine($"The temperature is {Current.Degrees}°C at {Current.Date:g}");
             if (first)
             {
-                last = this.provider.Current;
+                last = Current;
                 first = false;
             }
             else
             {
-                Console.WriteLine($"   Change: {this.provider.Current.Degrees - last.Degrees}° in " +
-                    $"{this.provider.Current.Date.ToUniversalTime() - last.Date.ToUniversalTime():g}");
+                Console.WriteLine($"   Change: {Current.Degrees - last.Degrees}° in " +
+                    $"{Current.Date.ToUniversalTime() - last.Date.ToUniversalTime():g}");
             }
         }
     }
